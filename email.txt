@@ -1,2 +1,0 @@
-REMETENTE;SMTP_EMAIL;SENDER_NAME 
-leds.ifes@gmail.com;smtp.gmail.com:465;leds.ifes:
