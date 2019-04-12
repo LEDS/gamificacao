@@ -931,7 +931,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     <name>Diff Dias</name>
     <type>Calculator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -963,8 +963,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>480</yloc>
+      <xloc>144</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1070,7 +1070,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </partitioning>
     <formula>
       <field_name>META_TOTAL</field_name>
-      <formula_string>INT((([DIAS] /180)) *[META DE PARTICIPAÇÃO])  +  [META DE PARTICIPAÇÃO]</formula_string>
+      <formula_string>(INT([DIAS] /180) *[META DE PARTICIPAÇÃO])  +  [META DE PARTICIPAÇÃO]</formula_string>
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -1085,8 +1085,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>608</yloc>
+      <xloc>288</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1743,8 +1743,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>496</yloc>
+      <xloc>416</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -509,11 +509,11 @@
     </hop>
     <hop>
       <from>Replace &lt;ALUNO> pelo nome</from>
-      <to>Replace &lt;ALUNO> pelo nome 2</to>
+      <to>Replace Graficos </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Replace &lt;ALUNO> pelo nome 2</from>
+      <from>Replace Graficos </from>
       <to>Split smtp server e port</to>
       <enabled>Y</enabled>
     </hop>
@@ -581,6 +581,38 @@
     </remotesteps>
     <GUI>
       <xloc>640</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Enviar emails</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>temp_db</connection>
+    <sql>SELECT * FROM rotina,analise_participacoes, Servidor_email, configuracoes_alunos where  analise_participacoes.EMAIL =  configuracoes_alunos.EMAIL </sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>64</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -730,6 +762,57 @@
     </GUI>
   </step>
   <step>
+    <name>Replace Graficos </name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>&lt;#LINKS#GRAFICO1></replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>TABELA_PERFORMANCE</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>&lt;#LINKS#GRAFICO2></replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>TABELA_PERFORMANCE_TOTAL</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Split smtp server e port</name>
     <type>FieldSplitter</type>
     <description/>
@@ -789,77 +872,6 @@
       <draw>Y</draw>
     </GUI>
   </step>
-  <step>
-    <name>Enviar emails</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>temp_db</connection>
-    <sql>SELECT * FROM rotina,analise_participacoes, Servidor_email, configuracoes_alunos where  analise_participacoes.EMAIL =  configuracoes_alunos.EMAIL </sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>64</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Replace &lt;ALUNO> pelo nome 2</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&lt;#LINKS#GRAFICO1></replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>TABELA_PERFORMANCE</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
@@ -868,6 +880,10 @@
   <attributes>
     <group>
       <name>explorerState</name>
+      <attribute>
+        <key>Replace Graficos </key>
+        <value/>
+      </attribute>
     </group>
   </attributes>
 </transformation>
