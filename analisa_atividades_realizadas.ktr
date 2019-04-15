@@ -503,11 +503,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join</from>
-      <to>Meta MENSAL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Merge join</to>
       <enabled>Y</enabled>
@@ -528,23 +523,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Meta MENSAL</from>
-      <to>Memory group by</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Meta MENSAL</from>
-      <to>Filter rows 2</to>
+      <from>Memory group by 2</from>
+      <to>If field value is null</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Filter rows 2</from>
       <to>Memory group by 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Memory group by 2</from>
-      <to>If field value is null</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -592,6 +577,16 @@
       <to>Formula 2</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Filter rows 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Memory group by</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Atividades Realizadas</name>
@@ -633,9 +628,9 @@
     </file>
     <fields>
       <field>
-        <name>Data</name>
-        <type>String</type>
-        <length>8</length>
+        <name>Carimbo de data/hora</name>
+        <type>Date</type>
+        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
         <repeat>N</repeat>
@@ -669,19 +664,7 @@
         <group/>
       </field>
       <field>
-        <name>Tempo trabalhado em horas (semana):</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>Descreva suas atividades. Caso a atividade tiver um resultado envie o link aqui. Exemplo: vídeo tutorial, tutoria, etc</name>
+        <name>Atividades</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -693,7 +676,31 @@
         <group/>
       </field>
       <field>
-        <name>Tipo de atividade(Para mais de uma atividade envie o formulário mais de uma vez)</name>
+        <name>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</name>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>Para as atividades desempenhadas relativas ao LEDS informe a quantidade de horas de dedicação(Horas)</name>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>Descreva suas atividades de forma mais detalhada. Caso a atividade tenha um resultado envie o link aqui. Exemplo: criação de um vídeo tutorial, criação de um tutorial, etc</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1026,7 +1033,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>Data</name>
+        <name>Carimbo de data/hora</name>
         <rename>DATA_ATUAL</rename>
         <type>Date</type>
         <length>8</length>
@@ -1240,6 +1247,9 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       <field>
         <name>META_TOTAL</name>
       </field>
+      <field>
+        <name>PESO/100</name>
+      </field>
     </group>
     <fields>
       <field>
@@ -1258,7 +1268,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
+      <xloc>640</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1301,7 +1311,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     <fields>
       <field>
         <aggregate>HORAS_PARTICIPACAO</aggregate>
-        <subject>Tempo trabalhado em horas (semana):</subject>
+        <subject>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
@@ -1358,56 +1368,6 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Meta MENSAL</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Filter rows 2</send_true_to>
-    <send_false_to>Memory group by</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>ATIVIDADE_META</leftvalue>
-            <function>=</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>String</type>
-              <text>PROJETO QUE ESTOU ALOCADO E CONTRIBUIÇÃO LEDS</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask/>
-            </value>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1473,6 +1433,10 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <column_name>META_TOTAL</column_name>
         <stream_name>META_TOTAL</stream_name>
       </field>
+      <field>
+        <column_name>PESO_META</column_name>
+        <stream_name>PESO/100</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1483,7 +1447,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
+      <xloc>784</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1647,7 +1611,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <splitfield>Tipo de atividade(Para mais de uma atividade envie o formulário mais de uma vez)</splitfield>
+    <splitfield>Atividades</splitfield>
     <delimiter>,</delimiter>
     <newfield>ATIVIDADE</newfield>
     <rownum>N</rownum>
@@ -1743,8 +1707,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>528</yloc>
+      <xloc>384</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
