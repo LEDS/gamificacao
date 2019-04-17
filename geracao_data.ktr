@@ -509,26 +509,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>CalculatedFields week and month</from>
-      <to>Somente ate a data atual</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Somente ate a data atual</from>
-      <to>datas</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Configuracoes-Metas</from>
-      <to>Filter rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows</from>
-      <to>configuracoes_metas</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Servidor de Email</from>
       <to>Servidor de Email 2</to>
       <enabled>Y</enabled>
@@ -556,6 +536,21 @@
     <hop>
       <from>Select values 2</from>
       <to>configuracoes_alunos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CalculatedFields week and month</from>
+      <to>datas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Configuracoes-Metas</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>configuracoes_metas</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -952,9 +947,9 @@
         <group/>
       </field>
       <field>
-        <name>COMPETENCIA</name>
-        <type>String</type>
-        <length>6</length>
+        <name>MICRO_META</name>
+        <type>Number</type>
+        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
         <repeat>N</repeat>
@@ -1121,8 +1116,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>272</yloc>
+      <xloc>240</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1151,7 +1146,7 @@
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <limit>10000</limit>
+    <limit>365</limit>
     <never_ending>N</never_ending>
     <interval_in_ms>5000</interval_in_ms>
     <row_time_field>now</row_time_field>
@@ -1858,58 +1853,6 @@
     </GUI>
   </step>
   <step>
-    <name>Somente ate a data atual</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>datas</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>Year</leftvalue>
-            <function>=</function>
-            <rightvalue>AnoAtual</rightvalue>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <conditions>
-              <condition>
-                <negated>N</negated>
-                <leftvalue>Monht</leftvalue>
-                <function>&lt;=</function>
-                <rightvalue>MesAtual</rightvalue>
-              </condition>
-            </conditions>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>configuracoes_alunos</name>
     <type>TableOutput</type>
     <description/>
@@ -2047,8 +1990,8 @@
         <stream_name>PESO/100</stream_name>
       </field>
       <field>
-        <column_name>COMPETENCIA</column_name>
-        <stream_name>COMPETENCIA</stream_name>
+        <column_name>MICRO_META</column_name>
+        <stream_name>MICRO_META</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -2060,8 +2003,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
+      <xloc>512</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2122,18 +2065,6 @@
         <column_name>Day</column_name>
         <stream_name>Day</stream_name>
       </field>
-      <field>
-        <column_name>AnoAtual</column_name>
-        <stream_name>AnoAtual</stream_name>
-      </field>
-      <field>
-        <column_name>MesAtual</column_name>
-        <stream_name>MesAtual</stream_name>
-      </field>
-      <field>
-        <column_name>DiaAtual</column_name>
-        <stream_name>DiaAtual</stream_name>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2144,8 +2075,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>80</yloc>
+      <xloc>528</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

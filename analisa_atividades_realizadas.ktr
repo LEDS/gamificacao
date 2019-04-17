@@ -494,7 +494,7 @@
     </hop>
     <hop>
       <from>Atividades Realizadas</from>
-      <to>Formanda campo data</to>
+      <to>Campo data</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -518,7 +518,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Formanda campo data</from>
+      <from>Campo data</from>
       <to>Week and month</to>
       <enabled>Y</enabled>
     </hop>
@@ -533,23 +533,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>If field value is null</from>
-      <to>Horas Trabalhadas</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Memory group by</from>
       <to>Participacoes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Week and month</from>
-      <to>Calcula periodo analise</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calcula periodo analise</from>
-      <to>Split para pegar atividades da lista enviada</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -558,33 +543,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Data de Hoje</from>
-      <to>Conversao da data de entrada para data</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Conversao da data de entrada para data</from>
-      <to>Diff Dias</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Formula 2</from>
-      <to>Upper Case Atividade</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Diff Dias</from>
-      <to>Formula 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Merge join</from>
       <to>Filter rows 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Week and month</from>
+      <to>Split para pegar atividades da lista enviada</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Merge join</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
       <to>Memory group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Data de Hoje</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values</from>
+      <to>Upper Case Atividade</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -782,14 +772,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>32</xloc>
-      <yloc>240</yloc>
+      <xloc>64</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Calcula periodo analise</name>
-    <type>Formula</type>
+    <name>Campo data</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -798,14 +788,26 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <formula>
-      <field_name>Competencia</field_name>
-      <formula_string>if(([Monht]) &lt;=6   ; 1 ; 2 )</formula_string>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>Carimbo de data/hora</name>
+        <rename>DATA_ATIVIDADE</rename>
+        <type>Date</type>
+        <length>8</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy/MM/dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -815,8 +817,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>208</yloc>
+      <xloc>112</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -857,51 +859,6 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </GUI>
   </step>
   <step>
-    <name>Conversao da data de entrada para data</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>DATA_DE_ENTRADA_NO_LEDS</name>
-        <rename>DATA_DE_ENTRADA_NO_LEDS</rename>
-        <type>Date</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>dd/MM/yyyy</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>576</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Data de Hoje</name>
     <type>Formula</type>
     <description/>
@@ -929,38 +886,61 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>16</xloc>
-      <yloc>576</yloc>
+      <xloc>112</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Diff Dias</name>
-    <type>Calculator</type>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>DIAS</field_name>
-      <calc_type>DATE_DIFF_HR</calc_type>
-      <field_a>hoje</field_a>
-      <field_b>DATA_DE_ENTRADA_NO_LEDS</field_b>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
+    <send_true_to>Memory group by</send_true_to>
+    <send_false_to>Dummy (do nothing) 2</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>UNIDADE</leftvalue>
+            <function>=</function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>FEZ OU NÃO</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>DATA_ATIVIDADE</leftvalue>
+            <function>&gt;=</function>
+            <rightvalue>DATA_DE_ENTRADA_NO_LEDS</rightvalue>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>DATA_ATIVIDADE</leftvalue>
+            <function>IS NULL</function>
+            <rightvalue/>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -970,8 +950,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>464</yloc>
+      <xloc>640</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1015,160 +995,6 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </remotesteps>
     <GUI>
       <xloc>608</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Formanda campo data</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>Carimbo de data/hora</name>
-        <rename>DATA_ATUAL</rename>
-        <type>Date</type>
-        <length>8</length>
-        <precision>-2</precision>
-        <conversion_mask>yyyy/MM/dd</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>32</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Formula 2</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <formula>
-      <field_name>META_TOTAL</field_name>
-      <formula_string>(INT([DIAS] /180) *[META DE PARTICIPAÇÃO])  +  [META DE PARTICIPAÇÃO]</formula_string>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <replace_field/>
-    </formula>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>576</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Horas Trabalhadas</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_temp</connection>
-    <schema/>
-    <table>horas_trabalhadas</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ATIVIDADE_META</column_name>
-        <stream_name>ATIVIDADE_META</stream_name>
-      </field>
-      <field>
-        <column_name>Year_1</column_name>
-        <stream_name>Year_1</stream_name>
-      </field>
-      <field>
-        <column_name>Monht_1</column_name>
-        <stream_name>Monht_1</stream_name>
-      </field>
-      <field>
-        <column_name>EMAIL</column_name>
-        <stream_name>EMAIL</stream_name>
-      </field>
-      <field>
-        <column_name>META DE PARTICIPAÇÃO</column_name>
-        <stream_name>META DE PARTICIPAÇÃO</stream_name>
-      </field>
-      <field>
-        <column_name>PERIODO</column_name>
-        <stream_name>PERIODO</stream_name>
-      </field>
-      <field>
-        <column_name>HORAS_PARTICIPACAO</column_name>
-        <stream_name>HORAS_PARTICIPACAO</stream_name>
-      </field>
-      <field>
-        <column_name>META_TOTAL</column_name>
-        <stream_name>META_TOTAL</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
       <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1245,10 +1071,13 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <name>PERIODO</name>
       </field>
       <field>
-        <name>META_TOTAL</name>
+        <name>MICRO_META</name>
       </field>
       <field>
         <name>PESO/100</name>
+      </field>
+      <field>
+        <name>Day_1</name>
       </field>
     </group>
     <fields>
@@ -1268,7 +1097,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
+      <xloc>768</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1305,7 +1134,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <name>PERIODO</name>
       </field>
       <field>
-        <name>META_TOTAL</name>
+        <name>MICRO_META</name>
       </field>
     </group>
     <fields>
@@ -1341,7 +1170,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <join_type>RIGHT OUTER</join_type>
+    <join_type>FULL OUTER</join_type>
     <step1>Sort rows</step1>
     <step2>Sort rows 2</step2>
     <keys_1>
@@ -1430,12 +1259,16 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <stream_name>QUANTIDADE_PARTICIPACAO</stream_name>
       </field>
       <field>
-        <column_name>META_TOTAL</column_name>
-        <stream_name>META_TOTAL</stream_name>
+        <column_name>MICRO_META</column_name>
+        <stream_name>MICRO_META</stream_name>
       </field>
       <field>
         <column_name>PESO_META</column_name>
         <stream_name>PESO/100</stream_name>
+      </field>
+      <field>
+        <column_name>Day</column_name>
+        <stream_name>Day_1</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1447,7 +1280,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
+      <xloc>912</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1595,7 +1428,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>352</xloc>
       <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1628,7 +1461,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>288</yloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1707,8 +1540,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>576</yloc>
+      <xloc>256</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1725,7 +1558,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </partitioning>
     <formula>
       <field_name>Monht</field_name>
-      <formula_string>month([DATA_ATUAL])</formula_string>
+      <formula_string>month([DATA_ATIVIDADE])</formula_string>
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -1733,7 +1566,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </formula>
     <formula>
       <field_name>Year</field_name>
-      <formula_string>year([DATA_ATUAL])</formula_string>
+      <formula_string>year([DATA_ATIVIDADE])</formula_string>
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -1741,7 +1574,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     </formula>
     <formula>
       <field_name>Day</field_name>
-      <formula_string>day([DATA_ATUAL])</formula_string>
+      <formula_string>day([DATA_ATIVIDADE])</formula_string>
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -1764,8 +1597,78 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>96</yloc>
+      <xloc>208</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>DATA_DE_ENTRADA_NO_LEDS</name>
+        <rename>DATA_DE_ENTRADA_NO_LEDS</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>176</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

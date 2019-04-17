@@ -514,6 +514,16 @@
     </hop>
     <hop>
       <from>Replace Graficos </from>
+      <to>Replace in string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string</from>
+      <to>Replace in string 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Replace in string 2</from>
       <to>Split smtp server e port</to>
       <enabled>Y</enabled>
     </hop>
@@ -580,8 +590,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>224</yloc>
+      <xloc>672</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -780,31 +790,7 @@
         <replace_string>&lt;#LINKS#GRAFICO1></replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>TABELA_PERFORMANCE</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-      <field>
-        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&lt;#LINKS#GRAFICO2></replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>TABELA_PERFORMANCE_TOTAL</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-      <field>
-        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&lt;#LINKS#GRAFICO3></replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>TABELA_PERFORAMNCE_NOTA_GERAL</replace_field_by_string>
+        <replace_field_by_string>INDICE_GERAL</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -819,7 +805,85 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>368</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>&lt;#LINKS#GRAFICO2></replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>PERFORMANCE_DO_ANO</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Replace in string 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEXTO_DO_EMAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>&lt;#LINKS#GRAFICO3></replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>PERFORMANCE_GERAL</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
@@ -879,8 +943,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>336</yloc>
+      <xloc>640</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -892,10 +956,6 @@
   <attributes>
     <group>
       <name>explorerState</name>
-      <attribute>
-        <key>Replace Graficos </key>
-        <value/>
-      </attribute>
     </group>
   </attributes>
 </transformation>

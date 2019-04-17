@@ -518,7 +518,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C:\Users\felip_kja6gpn\Desktop\ETL_LEDS\lista_envio_emails.ktr</filename>
+      <filename>${Internal.Entry.Current.Directory}/lista_envio_emails.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -565,7 +565,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>C:\Users\felip_kja6gpn\Documents\R\R-3.5.0\bin\Rscript.exe  C:\Users\felip_kja6gpn\Desktop\ETL_LEDS\analise_performance_atividades_leds.R --no-save</script>
+      <script>C:\Users\felip_kja6gpn\Documents\R\R-3.5.0\bin\Rscript.exe  C:\Users\felip_kja6gpn\Documents\GitHub\gamificacao\analise_performance_atividades_leds.R --no-save</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
