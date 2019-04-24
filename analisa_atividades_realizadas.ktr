@@ -6,6 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -493,21 +494,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Atividades Realizadas</from>
-      <to>Campo data</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Trim na atividade</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows</from>
-      <to>Merge join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Upper Case Atividade</from>
       <to>Sort rows 2</to>
       <enabled>Y</enabled>
@@ -523,48 +509,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Memory group by 2</from>
-      <to>If field value is null</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows 2</from>
-      <to>Memory group by 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Memory group by</from>
-      <to>Participacoes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Configuracoes metas, datas e jedis</from>
       <to>Data de Hoje</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge join</from>
-      <to>Filter rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Week and month</from>
       <to>Split para pegar atividades da lista enviada</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join</from>
-      <to>Dummy (do nothing)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Merge join</from>
-      <to>Filter rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows</from>
-      <to>Memory group by</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -575,6 +526,66 @@
     <hop>
       <from>Select values</from>
       <to>Upper Case Atividade</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Participacoes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort rows</from>
+      <to>Merge join</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Atividades Realizadas</from>
+      <to>Tamanho da coluna</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Tamanho da coluna</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Trocando nome da quantidade e caractesres</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Trocando nome da quantidade e caractesres</from>
+      <to>Campo data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge join</from>
+      <to>Memory group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Trim na atividade</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>Sort rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>Text file output</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory group by</from>
+      <to>Modified JavaScript value 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 3</from>
+      <to>If field value is null</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -620,7 +631,7 @@
       <field>
         <name>Carimbo de data/hora</name>
         <type>Date</type>
-        <length>-1</length>
+        <length>10</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
         <repeat>N</repeat>
@@ -772,7 +783,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
+      <xloc>48</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
@@ -817,8 +828,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>128</yloc>
+      <xloc>368</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -853,8 +864,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>16</xloc>
-      <yloc>368</yloc>
+      <xloc>48</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -886,116 +897,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Memory group by</send_true_to>
-    <send_false_to>Dummy (do nothing) 2</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>UNIDADE</leftvalue>
-            <function>=</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>String</type>
-              <text>FEZ OU NÃO</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask/>
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>DATA_ATIVIDADE</leftvalue>
-            <function>&gt;=</function>
-            <rightvalue>DATA_DE_ENTRADA_NO_LEDS</rightvalue>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>OR</operator>
-            <leftvalue>DATA_ATIVIDADE</leftvalue>
-            <function>IS NULL</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Filter rows 2</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Memory group by 2</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>ATIVIDADE_META</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text>PROJETO QUE ESTOU ALOCADO E CONTRIBUIÇÃO LEDS</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>304</yloc>
+      <xloc>144</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1019,7 +922,19 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </valuetypes>
     <fields>
       <field>
-        <name>HORAS_PARTICIPACAO</name>
+        <name>HORAS_LEDS</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>QUANTIDADE_DE_CARACTERES</name>
+        <value>0</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>HORAS_PROJETO</name>
         <value>0</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
@@ -1034,8 +949,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>208</yloc>
+      <xloc>864</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1043,7 +958,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     <name>Memory group by</name>
     <type>MemoryGroupBy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1087,60 +1002,21 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by 2</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
       <field>
-        <name>ATIVIDADE_META</name>
+        <aggregate>QUANTIDADE_DE_CARACTERES</aggregate>
+        <subject>Quantidade_de_Caracteres</subject>
+        <type>SUM</type>
+        <valuefield/>
       </field>
       <field>
-        <name>Year_1</name>
+        <aggregate>HORAS_PROJETO</aggregate>
+        <subject>Horas_Projeto</subject>
+        <type>SUM</type>
+        <valuefield/>
       </field>
       <field>
-        <name>Monht_1</name>
-      </field>
-      <field>
-        <name>EMAIL</name>
-      </field>
-      <field>
-        <name>META DE PARTICIPAÇÃO</name>
-      </field>
-      <field>
-        <name>PERIODO</name>
-      </field>
-      <field>
-        <name>MICRO_META</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>HORAS_PARTICIPACAO</aggregate>
-        <subject>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</subject>
+        <aggregate>HORAS_LEDS</aggregate>
+        <subject>Horas_Leds</subject>
         <type>SUM</type>
         <valuefield/>
       </field>
@@ -1154,8 +1030,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>208</yloc>
+      <xloc>640</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1196,8 +1072,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>400</yloc>
+      <xloc>528</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1270,6 +1146,18 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
         <column_name>Day</column_name>
         <stream_name>Day_1</stream_name>
       </field>
+      <field>
+        <column_name>HORAS_LEDS</column_name>
+        <stream_name>HORAS_LEDS</stream_name>
+      </field>
+      <field>
+        <column_name>HORAS_PROJETOS</column_name>
+        <stream_name>HORAS_PROJETO</stream_name>
+      </field>
+      <field>
+        <column_name>QUANTIDADE_DE_CARACTERES</column_name>
+        <stream_name>QUANTIDADE_DE_CARACTERES</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1280,8 +1168,53 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>400</yloc>
+      <xloc>848</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>DATA_DE_ENTRADA_NO_LEDS</name>
+        <rename>DATA_DE_ENTRADA_NO_LEDS</rename>
+        <type>Date</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1354,8 +1287,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>160</yloc>
+      <xloc>528</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1460,8 +1393,49 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>272</yloc>
+      <xloc>288</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Tamanho da coluna</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>Quantidade_de_Caracteres</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>Descreva suas atividades de forma mais detalhada. Caso a atividade tenha um resultado envie o link aqui. Exemplo: criação de um vídeo tutorial, criação de um tutorial, etc</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>48</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1500,8 +1474,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>160</yloc>
+      <xloc>352</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1540,8 +1514,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>448</yloc>
+      <xloc>272</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1597,22 +1571,94 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>208</xloc>
-      <yloc>192</yloc>
+      <xloc>224</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var rowMeta = getInputRowMeta();
+
+var idxChar = rowMeta.indexOfValue("Quantidade_de_Caracteres");
+var idxAtividades = rowMeta.indexOfValue("Atividades");
+
+var idxLeds = rowMeta.indexOfValue("Para as atividades desempenhadas relativas ao LEDS informe a quantidade de horas de dedicação(Horas)");
+var idxProjeto = rowMeta.indexOfValue("Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)");
+
+var Quant_Caracteres = row[idxChar];
+var Horas_Leds = row[idxLeds];
+var Horas_Projeto = row[idxProjeto];
+
+
+var rowIndex = getInputRowMeta().size();
+newRow = createRowCopy(getOutputRowMeta().size());
+newRow[rowIndex++] = Quant_Caracteres;
+
+//Quantidade_de_Caracteres.setValue(0)//Script here
+
+
+newRow[idxAtividades] = "ATUALIZAÇÃO DA DESCRIÇÃO DA ATIVIDADES";
+
+putRow(newRow);
+newRow2 = createRowCopy(getOutputRowMeta().size());
+newRow2[rowIndex++] = Horas_Leds;
+newRow2[idxAtividades] = "PARTICIPAÇÃO EM ATIVIDADES DO LEDS";
+
+putRow(newRow2);
+newRow3 = createRowCopy(getOutputRowMeta().size());
+newRow3[rowIndex++] = Horas_Projeto;
+newRow3[idxAtividades] = "PARTICIPAÇÃO NO PROJETO QUE ESTOU ALOCADO";
+
+putRow(newRow3);
+
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>Quant_Caracteres</name>
+        <rename>Quant_Caracteres</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>Horas_Leds</name>
+        <rename>Horas_Leds</rename>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>Horas_Projeto</name>
+        <rename>Horas_Projeto</rename>
+        <type>Number</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1622,13 +1668,13 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>512</yloc>
+      <xloc>32</xloc>
+      <yloc>0</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
+    <name>Trocando nome da quantidade e caractesres</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1639,10 +1685,62 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>Algo a acrescentar sobre sua semana?</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Atividades</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Carimbo de data/hora</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Descreva suas atividades de forma mais detalhada. Caso a atividade tenha um resultado envie o link aqui. Exemplo: criação de um vídeo tutorial, criação de um tutorial, etc</name>
+        <rename/>
+      </field>
+      <field>
+        <name>E-mail</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Impedimentos? </name>
+        <rename/>
+      </field>
+      <field>
+        <name>Nome</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Para as atividades desempenhadas relativas ao LEDS informe a quantidade de horas de dedicação(Horas)</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Quais?</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Quant_Caracteres</name>
+        <rename>Quantidade_de_Caracteres</rename>
+      </field>
+      <field>
+        <name>Horas_Leds</name>
+        <rename/>
+      </field>
+      <field>
+        <name>Horas_Projeto</name>
+        <rename/>
+      </field>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>DATA_DE_ENTRADA_NO_LEDS</name>
-        <rename>DATA_DE_ENTRADA_NO_LEDS</rename>
+        <name>Carimbo de data/hora</name>
+        <rename>Carimbo de data/hora</rename>
         <type>Date</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1667,8 +1765,393 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>352</yloc>
+      <xloc>208</xloc>
+      <yloc>0</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>Y</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+
+if((Horas_Leds.getNumber()) != 0 &amp;&amp; Horas_Projeto.getNumber() != 0 &amp;&amp;  Quantidade_de_Caracteres.getInteger() != 0 ){
+   Horas_Leds.setValue(0);
+   Horas_Projeto.setValue(0);
+   Quantidade_de_Caracteres.setValue(0);
+}
+if (Horas_Leds.getNumber() == 0 ){
+   Horas_Leds.setValue(0);
+
+}
+if ( Horas_Projeto.getNumber() == 0 ){
+   Horas_Projeto.setValue(0);
+}
+if (Quantidade_de_Caracteres.getNumber() == 0 ){
+   Quantidade_de_Caracteres.setValue(0);
+}
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>windows-1252</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:/Users/felip_kja6gpn/Desktop/ETL_LEDS/TEMP</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>CSV</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>Algo a acrescentar sobre sua semana?</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Atividades</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>DATA_ATIVIDADE</name>
+        <type>Date</type>
+        <format>yyyy/MM/dd</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Descreva suas atividades de forma mais detalhada. Caso a atividade tenha um resultado envie o link aqui. Exemplo: criação de um vídeo tutorial, criação de um tutorial, etc</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>E-mail</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Impedimentos? </name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Nome</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Para as atividades desempenhadas relativas ao LEDS informe a quantidade de horas de dedicação(Horas)</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Quais?</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Quantidade_de_Caracteres</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Horas_Leds</name>
+        <type>Number</type>
+        <format>####0.0#########;-####0.0#########</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Horas_Projeto</name>
+        <type>Number</type>
+        <format>####0.0#########;-####0.0#########</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Monht</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Year</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>Day</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>AnoAtual</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ATIVIDADE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ATIVIDADE_1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>100</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>0</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 3</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>Y</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>if( ATIVIDADE_META.getString() == "PARTICIPAÇÃO NO PROJETO QUE ESTOU ALOCADO"){
+     QUANTIDADE_PARTICIPACAO.setValue(HORAS_PROJETO.getNumber())
+}
+
+if( ATIVIDADE_META.getString() == "PARTICIPAÇÃO EM ATIVIDADES DO LEDS"){
+     QUANTIDADE_PARTICIPACAO.setValue(HORAS_LEDS.getNumber())
+}
+
+if( ATIVIDADE_META.getString() == "ATUALIZAÇÃO DA DESCRIÇÃO DA ATIVIDADES"){
+     QUANTIDADE_PARTICIPACAO.setValue(QUANTIDADE_DE_CARACTERES.getInteger())
+}
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1680,6 +2163,10 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
   <attributes>
     <group>
       <name>explorerState</name>
+      <attribute>
+        <key>Trocando nome da quantidade e caractesres</key>
+        <value/>
+      </attribute>
     </group>
   </attributes>
 </transformation>
