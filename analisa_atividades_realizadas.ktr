@@ -565,27 +565,27 @@
     </hop>
     <hop>
       <from>Trim na atividade</from>
-      <to>Modified JavaScript value 2</to>
+      <to>Zera linhas desnecessarias</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 2</from>
+      <from>Zera linhas desnecessarias</from>
       <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 2</from>
-      <to>Text file output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Memory group by</from>
-      <to>Modified JavaScript value 3</to>
+      <to>Seta atividades </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Modified JavaScript value 3</from>
+      <from>Seta atividades </from>
       <to>If field value is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>If field value is null</from>
+      <to>Microsoft Excel output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -906,7 +906,7 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
     <name>If field value is null</name>
     <type>IfNull</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1168,8 +1168,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>384</yloc>
+      <xloc>800</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1571,8 +1571,8 @@ configuracoes_alunos.PROJETO_FINALIZADO = "N"</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>144</yloc>
+      <xloc>208</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1771,7 +1771,7 @@ putRow(newRow3);
     </GUI>
   </step>
   <step>
-    <name>Modified JavaScript value 2</name>
+    <name>Zera linhas desnecessarias</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>N</distribute>
@@ -1819,298 +1819,13 @@ if (Quantidade_de_Caracteres.getNumber() == 0 ){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>48</yloc>
+      <xloc>528</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Text file output</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>windows-1252</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>C:/Users/felip_kja6gpn/Desktop/ETL_LEDS/TEMP</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>CSV</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-      <field>
-        <name>Algo a acrescentar sobre sua semana?</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Atividades</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>DATA_ATIVIDADE</name>
-        <type>Date</type>
-        <format>yyyy/MM/dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>8</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Descreva suas atividades de forma mais detalhada. Caso a atividade tenha um resultado envie o link aqui. Exemplo: criação de um vídeo tutorial, criação de um tutorial, etc</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>E-mail</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Impedimentos? </name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Nome</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Para as atividades desempenhadas no projeto que está alocado informe a quantidade de horas de dedicação(Horas)</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Para as atividades desempenhadas relativas ao LEDS informe a quantidade de horas de dedicação(Horas)</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Quais?</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Quantidade_de_Caracteres</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>Horas_Leds</name>
-        <type>Number</type>
-        <format>####0.0#########;-####0.0#########</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Horas_Projeto</name>
-        <type>Number</type>
-        <format>####0.0#########;-####0.0#########</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>Monht</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>Year</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>Day</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>AnoAtual</name>
-        <type>Integer</type>
-        <format>####0;-####0</format>
-        <currency/>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>ATIVIDADE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ATIVIDADE_1</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>100</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>0</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value 3</name>
+    <name>Seta atividades </name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -2155,6 +1870,144 @@ if( ATIVIDADE_META.getString() == "ATUALIZAÇÃO DA DESCRIÇÃO DA ATIVIDADES"){
       <draw>Y</draw>
     </GUI>
   </step>
+  <step>
+    <name>Microsoft Excel output</name>
+    <type>ExcelOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding/>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>C:\Users\felip_kja6gpn\Desktop\ETL_LEDS\participacoes.xls</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <sheetname>Sheet1</sheetname>
+      <autosizecolums>N</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory/>
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>ATIVIDADE_META</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Year_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Monht_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>EMAIL</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>META DE PARTICIPAÇÃO</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>PERIODO</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>MICRO_META</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>PESO/100</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>Day_1</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>QUANTIDADE_PARTICIPACAO</name>
+        <type>Integer</type>
+        <format/>
+      </field>
+      <field>
+        <name>QUANTIDADE_DE_CARACTERES</name>
+        <type>Integer</type>
+        <format/>
+      </field>
+      <field>
+        <name>HORAS_PROJETO</name>
+        <type>Number</type>
+        <format/>
+      </field>
+      <field>
+        <name>HORAS_LEDS</name>
+        <type>Number</type>
+        <format/>
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>10</header_font_size>
+      <header_font_bold>N</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>none</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>left</header_alignment>
+      <header_image/>
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
@@ -2164,7 +2017,15 @@ if( ATIVIDADE_META.getString() == "ATUALIZAÇÃO DA DESCRIÇÃO DA ATIVIDADES"){
     <group>
       <name>explorerState</name>
       <attribute>
+        <key>Zera linhas desnecessarias</key>
+        <value/>
+      </attribute>
+      <attribute>
         <key>Trocando nome da quantidade e caractesres</key>
+        <value/>
+      </attribute>
+      <attribute>
+        <key>Seta atividades </key>
         <value/>
       </attribute>
     </group>

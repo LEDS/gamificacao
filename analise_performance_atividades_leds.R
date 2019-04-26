@@ -37,9 +37,9 @@ for(i in 1:nrow(listaEmails)) {
   
   
   
-  sqlQueryIndiceGeral <- "select ROUND(avg(Performance)) as 'Desempenho Geral(%)' from (select ((SUM(QUANTIDADE_PARTICIPACAO)/ROUND(sum(MICRO_META)))*100) as Performance, ATIVIDADE_META from particiapcoes where  EMAIL = '"
+  sqlQueryIndiceGeral <- "select ROUND(avg(Performance)) as 'Desempenho Geral(%)' from (select ((SUM(QUANTIDADE_PARTICIPACAO)/ROUND(sum(MICRO_META)))*100) as Performance, ATIVIDADE_META, Monht_1 || '/' || Year_1 from particiapcoes where  EMAIL = '"
   sqlQueryIndiceGeral  <- paste(sqlQueryIndiceGeral, condicao, sep="")
-  sqlQueryIndiceGeral  <- paste(sqlQueryIndiceGeral, " group by  ATIVIDADE_META )", sep="")
+  sqlQueryIndiceGeral  <- paste(sqlQueryIndiceGeral, " group by  ATIVIDADE_META,Monht_1 || '/' || Year_1 )", sep="")
   analiseIndiceGeral <-dbGetQuery(con,  sqlQueryIndiceGeral )
   print(sqlQueryIndiceGeral)
   htmlIndiceGeral <-tableHTML(analiseIndiceGeral) 
